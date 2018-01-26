@@ -1,0 +1,2 @@
+FROM dzejson91/vhosts:base
+

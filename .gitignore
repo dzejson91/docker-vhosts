@@ -1,0 +1,7 @@
+/www/*
+!/www/
+!/www/.htaccess
+!/www/phpinfo/
+
+/mysql/*
+!/mysql/

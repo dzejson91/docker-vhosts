@@ -1,0 +1,34 @@
+version: "2"
+
+services:
+  
+  # vhosts
+  vhosts:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile.vhosts
+    restart: always
+    container_name: vhosts
+    hostname: vhosts
+    working_dir: /www
+    volumes: 
+      - "./www:/www"
+    links:
+      - mysql
+    ports:
+      - "2222:22"
+      - "80:80"
+      - "443:443"
+
+  # database
+  mysql:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql
+    hostname: mysql
+    volumes:
+      - "./mysql/5.7:/var/lib/mysql"
+    environment:
+      - MYSQL_ROOT_PASSWORD=krasnal
+    ports:
+      - "3306:3306"
