@@ -1,20 +1,26 @@
 version: "2"
 
 services:
-  
+
   # vhosts
   vhosts:
     build:
-      context: ./docker
-      dockerfile: Dockerfile.vhosts
+      context: ./docker/vhosts
+      dockerfile: Dockerfile
     restart: always
     container_name: vhosts
     hostname: vhosts
     working_dir: /www
     volumes: 
       - "./www:/www"
+      - "./www/logs:/var/log/apache2"
+    environment:
+      ROOT_PASS: root # root
+      USER_PASS: user # user
+      UID: 1000
+      GID: 50
     links:
-      - mysql
+     - mysql
     ports:
       - "2222:22"
       - "80:80"

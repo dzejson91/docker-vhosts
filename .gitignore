@@ -3,5 +3,5 @@
 !/www/.htaccess
 !/www/phpinfo/
 
-/mysql/*
-!/mysql/
+/mysql/
+/logs/
