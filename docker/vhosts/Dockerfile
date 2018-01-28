@@ -1,4 +1,4 @@
-FROM dzejson91/vhosts:base
+FROM dzejson91/vhosts:latest
 
 ENV UID 1000
 ENV GID 50
