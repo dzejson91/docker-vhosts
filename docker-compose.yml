@@ -31,6 +31,7 @@ services:
 
   # samba
   samba:
+    tty: true
     image: dzejson91/vhosts:samba
     restart: always
     container_name: samba
