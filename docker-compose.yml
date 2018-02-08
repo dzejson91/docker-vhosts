@@ -21,23 +21,52 @@ services:
       GID: 50
     links:
      - mysql
+     - mysql-5.7
+     - redis
+     - memcached
     ports:
       - "2222:22"
       - "80:80"
       - "443:443"
 
-  # database
+  # samba
+  samba:
+    image: dzejson91/vhosts:samba
+    restart: always
+    container_name: samba
+    hostname: samba
+    volumes:
+      - "./:/data"
+      - "./www:/www"
+    ports:
+      - "139:139"
+      - "445:445"
+
+  # database mysql-5.5 (default)
   mysql:
-    image: mysql:5.7
+    image: mysql:5.5
     restart: always
     container_name: mysql
     hostname: mysql
+    volumes:
+      - "./mysql/5.5:/var/lib/mysql"
+    environment:
+      - MYSQL_ROOT_PASSWORD=krasnal
+    ports:
+      - "3306:3306"
+
+  # database mysql-5.7
+  mysql-5.7:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql-5.7
+    hostname: mysql-5.7
     volumes:
       - "./mysql/5.7:/var/lib/mysql"
     environment:
       - MYSQL_ROOT_PASSWORD=krasnal
     ports:
-      - "3306:3306"
+      - "33306:3306"
 
   # phpMyAdmin
   phpmyadmin:
