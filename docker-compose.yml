@@ -7,6 +7,7 @@ services:
     build:
       context: ./docker/vhosts
       dockerfile: Dockerfile
+    tty: true
     restart: always
     container_name: vhosts
     hostname: vhosts

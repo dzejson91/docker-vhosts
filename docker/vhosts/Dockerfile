@@ -10,3 +10,5 @@ RUN usermod -ou ${UID} user
 RUN echo "root:${ROOT_PASS}" | chpasswd
 RUN echo "user:${USER_PASS}" | chpasswd
 
+ENTRYPOINT ["/bin/bash"]
+CMD ["/docker-entrypoint.sh"]
