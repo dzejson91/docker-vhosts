@@ -14,6 +14,7 @@ services:
     volumes: 
       - "./www:/www"
       - "./www/logs:/var/log/apache2"
+      - "/home/user/.ssh"
     environment:
       ROOT_PASS: root # root
       USER_PASS: user # user
@@ -42,6 +43,20 @@ services:
     ports:
       - "139:139"
       - "445:445"
+
+  # portainer
+  portainer:
+    image: portainer/portainer
+    restart: always
+    container_name: portainer
+    hostname: portainer
+    volumes: 
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./portainer:/data"
+    ports:
+      - "9000:9000"
+    labels:
+      - "hide=hide"
 
   # database mysql-5.5 (default)
   mysql:
