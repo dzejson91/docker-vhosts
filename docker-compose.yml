@@ -15,7 +15,6 @@ services:
     volumes: 
       - "./www:/www"
       - "./www/logs:/var/log/apache2"
-      - "/home/user/.ssh"
     environment:
       ROOT_PASS: root # root
       USER_PASS: user # user
