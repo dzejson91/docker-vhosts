@@ -25,6 +25,7 @@ services:
      - mysql-5.7
      - redis
      - memcached
+     - elastic
     ports:
       - "2222:22"
       - "80:80"
@@ -116,3 +117,15 @@ services:
     hostname: memcached
     ports:
       - "11211:11211"
+
+  # ElasticSearch
+  elastic:
+    image: elasticsearch:6.6.2
+    restart: always
+    container_name: elastic
+    hostname: elastic
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
