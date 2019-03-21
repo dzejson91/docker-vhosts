@@ -26,6 +26,7 @@ services:
      - redis
      - memcached
      - elastic
+     - mailhog
     ports:
       - "2222:22"
       - "80:80"
@@ -129,3 +130,13 @@ services:
       - "9300:9300"
     environment:
       - discovery.type=single-node
+
+  # ElasticSearch
+  mailhog:
+    image: mailhog/mailhog
+    restart: always
+    container_name: mailhog
+    hostname: mailhog
+    ports: 
+      - 1025:1025
+      - 8025:8025
